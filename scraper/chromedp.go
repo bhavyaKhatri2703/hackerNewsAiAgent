@@ -11,18 +11,18 @@ import (
 )
 
 type story struct {
-	title, url, content string
+	Title   string `json:"title"`
+	Url     string `json:"url"`
+	Content string `json:"content"`
 }
 
-func main() {
+func getStories(searchQuery string) []story {
 	ctx, cancel := chromedp.NewContext(
 		context.Background(),
 	)
 
 	defer cancel()
 
-	// from backend
-	searchQuery := "golang"
 	URL := fmt.Sprintf("https://hn.algolia.com/?dateRange=all&page=0&prefix=false&query=%s&sort=byDate&type=story", searchQuery)
 
 	var stories []story
@@ -63,15 +63,17 @@ func main() {
 		}
 
 		newStory := story{}
-		newStory.title = title
-		newStory.url = url
-		newStory.content = content
+		newStory.Title = title
+		newStory.Url = url
+		newStory.Content = content
 
 		stories = append(stories, newStory)
 	}
 
 	for i, s := range stories {
-		fmt.Printf("[%d]\nTitle: %s\nURL: %s\nContent: %s\n\n", i+1, s.title, s.url, s.content)
+		fmt.Printf("[%d]\nTitle: %s\nURL: %s\nContent: %s\n\n", i+1, s.Title, s.Url, s.Content)
 	}
+
+	return stories
 
 }
