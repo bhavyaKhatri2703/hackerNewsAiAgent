@@ -70,7 +70,7 @@ def save_story(conn,message_data) :
     cursor.close()
 
 
-def main():
+def connectToRabbitMQ():
 
     conn = connect_db()
     create_tables(conn)
@@ -93,5 +93,6 @@ def main():
     print(' [*] Waiting for messages. To exit press CTRL+C')
     channel.start_consuming()
 
-if __name__ == '__main__' :
-    main()
+if __name__ == "__main__":
+
+    connectToRabbitMQ()

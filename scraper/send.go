@@ -93,6 +93,6 @@ func scrapeAndPublish(searchQuery string, userid int) error {
 	return nil
 }
 
-func main() {
-	scrapeAndPublish("GoLang", 123)
-}
+// func main() {
+// 	scrapeAndPublish("GoLang", 123)
+// }

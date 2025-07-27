@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package main;
+
+option go_package = "./;main";
+
+service QuestionService {
+  rpc Ask (QuestionRequest) returns (QuestionResponse);
+}
+
+message QuestionRequest {
+  string name = 1;
+  string text = 2;
+}
+message NewsItem {
+  string interest = 1;
+  string title = 2;
+  string content = 3;
+  string url = 4;
+  float distance = 5;
+}
+
+message QuestionResponse {
+  repeated NewsItem answer = 1;
+}
